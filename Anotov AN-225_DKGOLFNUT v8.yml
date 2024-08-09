@@ -1,0 +1,1975 @@
+# Version 0.2
+    # UPDATES
+    # 8-9-24 Fixed Mispelled COMMANDS on APU 
+    
+    # Addded new logic for Altimeter Knob
+    # Added Exclude for EFB SLIDER due to jumping - iniBuildsModernEFB#forwardPax
+
+
+include:
+  - definitions/modules/Instruments/AS_GNS430.yaml
+  - definitions/modules/Instruments/AS_GNS530.yaml
+  - definitions/modules/Instruments/AS_GTX330.yaml
+  - definitions/modules/Instruments/AS_GNS650.yaml  
+  - definitions/modules/Instruments/AS_KR87.yaml 
+  - definitions/modules/Instruments/AS_KAP140.yaml
+  - definitions/modules/Instruments/PMS50_GNS.yaml
+  - definitions/modules/Instruments/PMS50_GTN.yaml
+  - definitions/modules/Instruments/TDS_GTNXi.yaml
+#  - definitions/modules/autopilot.yaml
+  - definitions/modules/commonvars.yaml  
+  - definitions/modules/controls.yaml
+  - definitions/modules/deice.yaml
+  - definitions/modules/engines.yaml
+  - definitions/modules/engines.yaml
+  - definitions/modules/electrical.yaml  
+  - definitions/modules/engines.yaml
+  - definitions/modules/fuel.yaml
+  - definitions/modules/general.yaml
+  - definitions/modules/handling.yaml
+  - definitions/modules/lights.yaml
+  - definitions/modules/navigation.yaml
+  - definitions/modules/pressurization.yaml
+  - definitions/modules/radios.yaml
+  - definitions/modules/safety.yaml
+  - definitions/modules/transponder.yaml  
+  - definitions/modules/trim.yaml
+  
+  
+SHARED:
+  - # TEST
+   type: NumSet
+   var_name: A:LIGHT LANDING:2
+   var_units: Bool
+   var_type: f64
+   event_name: LANDING_LIGHTS_SET
+   event_param: 2
+  - # TEMP to see if it sets value
+    type: NumSet
+    var_name: A:SPOILERS HANDLE POSITION
+    var_units: Position 16k
+    var_type: f64
+    event_name: SPOILERS_SET
+    unreliable: true
+  - # LVAR's
+#  - #############  CoPILOT PANELS #############
+
+#  - ##### FRONT PANEL #####
+#  - # FLASH ALARM RESET 
+    type: var
+    var_name: L:An225_MASTER_WARNING_COMMAND      
+  - # FO VOR and RMI INDICATOR
+    type: var
+    var_name: L:__FO_ANN_RESETIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_FO_RMI_VOR1_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_RMI_VOR1_NEEDLE      
+  - #
+    type: var
+    var_name: L:AN225_FO_RMI_VOR2_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_RMI_VOR2_NEEDLE      
+  - # Artificial Horizon
+    type: var
+    var_name: L:AN225_FO_AH_PWR      
+  - #
+    type: var
+    var_name: L:__FO_AH_PWRIsPressed      
+  - # FO DME BRIGHTNESS
+    type: var
+    var_name: L:AN225_POTENTIOMETER_49      
+  - # FO RADIO ALTIMETER
+    type: var
+    var_name: L:AN225_FO_RA_Knob_TEST      
+#  - #
+#    type: var
+#    var_name: L:AN225_FO_RA_NEEDLE_ANIMATION   
+  - #
+    type: var
+    var_name: L:AN225_FO_RA_BUG     
+  - #
+    type: var
+    var_name: L:AN225_FO_RA_BUG_ANIMATION      
+  - # FO HSI INDICATOR
+    type: var
+    var_name: L:AN225_FO_HSI1_SELECTION      
+  - #
+    type: var
+    var_name: L:__FO_LND_PUSHIsPressed           
+  - #
+    type: var
+    var_name: L:__FO_NAV_PUSHIsPressed
+  - #
+    type: var
+    var_name: L:__FO_VOR1SET_PUSHIsPressed           
+  - #
+    type: var
+    var_name: L:__FO_VOR2SET_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_FO_HSI2_SELECTION      
+  - #
+    type: var
+    var_name: L:__FO_ADF1_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__FO_ADF2_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__FO_VOR1CAR_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__FO_VOR2CAR_PUSHIsPressed  
+    
+#  - ##### RIGHT ARM PANEL #####
+  - # FO WIPER SWITCH
+    type: var
+    var_name: L:AN225_WIPER_SWITCH_FO      
+  - # FO VSI - TCAS BRIGHTNESS KNOB
+    type: var
+    var_name: L:AN225_POTENTIOMETER_40      
+  - # Illumination Panel
+    type: var
+    var_name: L:AN225_POTENTIOMETER_44      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_27      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_28      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_29  
+    
+#  - #############  MID COCKPIT PANELS #############
+
+#  - ##### Mid Cockpit Navigator Front Left Position ##### 
+
+  - # Instrument NAV MASTER Panel A SWITCHES #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_1      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_2      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_3      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_4      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_5      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_6      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_7      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_8      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_9      
+  - #
+    type: var
+    var_name: L:AN225_AV_A_TOGGLE_10   
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_1     
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_2      
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_3      
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_4      
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_5      
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_6      
+  - #
+    type: var
+    var_name: L:AN225_AV_B_TOGGLE_7 
+    
+  - # Navigator PANEL ADF1
+    type: var
+    var_name: L:AN225_VOLUME_ADF1      
+  - #
+    type: var
+    var_name: L:__knob_nav_adf1_sel100      
+  - #
+    type: var
+    var_name: L:__knob_nav_adf1_sel10      
+  - #
+    type: var
+    var_name: L:__knob_nav_adf1_sel1 
+    
+  - # Navigator PANEL ADF2
+    type: var
+    var_name: L:AN225_VOLUME_ADF2   
+  - #
+    type: var
+    var_name: L:__knob_nav_ADF2_sel100   
+  - #
+    type: var
+    var_name: L:__knob_nav_ADF2_sel10     
+  - #
+    type: var
+    var_name: L:__knob_nav_ADF2_sel1    
+    
+  - # NAVIGATOR PANEL LIGHTS
+    type: var
+    var_name: L:AN225_POTENTIOMETER_45      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_39
+    
+  - # NAV DME 1 & 2 Brightness
+    type: var
+    var_name: L:AN225_NAV_NAV1_DME_TOGGLE      
+  - # 
+    type: var
+    var_name: L:AN225_NAV_NAV2_DME_TOGGLE 
+    
+  - # NAV HSI 1 PANEL LEFT
+    type: var
+    var_name: L:AN225_NAV1_HSI_SELECTOR
+  -
+    type: var
+    var_name: L:AN225_NAV_HSI1_SELECTION
+  - # HAB Button
+    type: var
+    var_name: L:__NAV_HSI1_SEL1IsPressed    
+  - # NOC Button
+    type: var
+    var_name: L:__NAV_HSI1_SEL2IsPressed 
+    
+  - # NAV HSI 2 PANEL RIGHT VOR SET Buttons
+    type: var
+    var_name: L:AN225_NAV_HSI2_SELECTION1
+  - # VOR1 3AA button
+    type: var
+    var_name: L:__NAV_VOR1SET_PUSHIsPressed    
+  - # VOR2 3AA button
+    type: var
+    var_name: L:__NAV_VOR2SET_PUSHIsPressed      
+  - # NAV HSI 2 PANEL RIGHT VORCAR AND ADF Buttons
+    type: var
+    var_name: L:AN225_NAV_HSI2_SELECTION2      
+  - # VOR1CAR VOR1 TEK
+    type: var
+    var_name: L:__NAV_VOR1CAR_PUSHIsPressed 
+  - # VOR2CAR VOR2 TEK
+    type: var
+    var_name: L:__NAV_VOR2CAR_PUSHIsPressed     
+  - # APK 1 Button
+    type: var
+    var_name: L:__NAV_ADF1_PUSHIsPressed 
+  - # APK 2 Button
+    type: var
+    var_name: L:__NAV_ADF2_PUSHIsPressed
+  - # NAV 2 Selector Switch Right
+    type: var
+    var_name: L:AN225_NAV2_HSI_SELECTOR 
+    
+  - # NAVIGATOR Marker Panel
+    type: var
+    var_name: L:AN225_NAV_VOR_DATA_SEL      
+  - #
+    type: var
+    var_name: L:AN225_NAV_VOR_DATA_TOGGLE 
+    
+  - # Navigator NAV1 Radio
+    type: var
+    var_name: L:AN225_NAV_NAV1_DME_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_NAV_NAV1_AUTO      
+  - #
+    type: var
+    var_name: L:AN225_NAV_NAV1_DIST      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_OUTER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_OUTER_KNOB_TURNED_ANTICLOCKWISE 
+    
+  - # VOR1 Brightness Knob
+    type: var
+    var_name: L:AN225_POTENTIOMETER_51   
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_INNER_KNOB_TURNED_CLOCKWISE     
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_INNER_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_VOLUME_NAV1_VOR1
+    
+  - # Navigator NAV2 Radio
+    type: var
+    var_name: L:AN225_NAV_NAV2_DME_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_NAV_NAV2_AUTO      
+  - #
+    type: var
+    var_name: L:AN225_NAV_NAV2_DIST      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_OUTER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_OUTER_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_52      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_INNER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_INNER_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_VOLUME_NAV1_VOR2   
+
+#  - ##### Mid Cockpit - COMM OFFICER Rear Left Position ##### 
+
+  - # COM 1 PANEL #
+    type: var
+    var_name: L:AN225_RMP_COM1_OUTER_KNOB_TURNED_CLOCKWISE   
+  - #
+    type: var
+    var_name: L:AN225_RMP_COM1_OUTER_KNOB_TURNED_ANTICLOCKWISE     
+  - #
+    type: var
+    var_name: L:AN225_VHF1_TOGGLE_LEFT      
+  - #
+    type: var
+    var_name: L:AN225_VHF1_TOGGLE_RIGHT      
+  - #
+    type: var
+    var_name: L:AN225_RMP_COM1_INNER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_COM1_INNER_KNOB_TURNED_ANTICLOCKWISE      
+  - # COM 2 PANEL #
+    type: var
+    var_name: L:AN225_RMP_COM2_OUTER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_COM2_OUTER_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_VHF2_TOGGLE_LEFT
+  - #
+    type: var
+    var_name: L:AN225_VHF2_TOGGLE_RIGHT      
+  - #
+    type: var
+    var_name: L:AN225_RMP_COM2_INNER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_COM2_INNER_KNOB_TURNED_ANTICLOCKWISE      
+
+#  - ##### MID COCKPIT - ENGINEER Front Right Position  ##### 
+
+#  - ##### ENGINE START PANEL #####
+  - # STARTER BUTTONS
+    type: var
+    var_name: L:AN225_ENGINE_START_COVER_ANIMATION      
+  - #
+    type: var
+    var_name: L:AN225_ENG_STARTERS_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_ENG_STOP_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_ENG_AUTOSEQ_BUTTON      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_STARTER_BUTTON   
+  - #
+    type: var
+    var_name: L:AN225_ENG2_STARTER_BUTTON   
+  - #
+    type: var
+    var_name: L:AN225_ENG3_STARTER_BUTTON     
+  - #
+    type: var
+    var_name: L:AN225_ENG4_STARTER_BUTTON      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_STARTER_BUTTON      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_STARTER_BUTTON 
+    
+  - # STARTER MODE SWITCHES
+    type: var
+    var_name: L:AN225_ENG_STARTERS_MODE      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_START_MODE      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_START_MODE      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_START_MODE      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_START_MODE      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_START_MODE      
+
+#  - ##### HYDRAULIC PANEL #####
+
+  - # HYDRAULIC TRANSFER BUTTONS
+    type: var
+    var_name: L:AN225_HYD_TRANS_LEFT_STATUS      
+  - #
+    type: var
+    var_name: L:__HYD_TRANS_LEFTIsPressed 
+  - # 
+    type: var
+    var_name: L:AN225_HYD_TRANS_RIGHT_STATUS      
+  - #
+    type: var
+    var_name: L:__HYD_TRANS_RIGHTIsPressed 
+
+  - # HYDAULIC PUMP COVERS and SWITCHES
+    type: var
+    var_name: L:__ENG1_HYDPUMP_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG1_HYDPUMP_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__ENG1_HYDPUMP_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG1_HYDPUMP_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_HYD_STATUS   
+  - #
+    type: var
+    var_name: L:__ENG2_HYDPUMP_GUARD_State   
+  - #
+    type: var
+    var_name: L:__ENG2_HYDPUMP_GUARDIsPressed     
+  - #
+    type: var
+    var_name: L:AN225_ENG2_HYD_STATUS      
+  - #
+    type: var
+    var_name: L:__ENG3_HYDPUMP_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG3_HYDPUMP_GUARDIsPressed     
+  - #
+    type: var
+    var_name: L:AN225_ENG3_HYD_STATUS      
+  - #
+    type: var
+    var_name: L:__ENG4_HYDPUMP_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG4_HYDPUMP_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_HYD_STATUS      
+  - #
+    type: var
+    var_name: L:__ENG5_HYDPUMP_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG5_HYDPUMP_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_HYD_STATUS      
+  - #
+    type: var
+    var_name: L:__ENG6_HYDPUMP_GUARD_State     
+  - #
+    type: var
+    var_name: L:__ENG6_HYDPUMP_GUARDIsPressed
+  - #
+    type: var
+    var_name: L:AN225_ENG6_HYD_STATUS
+
+#  - ##### FUEL RAIO PANEL #####
+
+  - # FUEL MIX RATIO GUARD AND SWITCHES
+    type: var
+    var_name: L:__ENG1_CUTOFF_GUARD_State
+  - #
+    type: var
+    var_name: L:__ENG1_CUTOFF_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__ENG1_CUTOFFIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO1      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO1_HANDLE      
+  - #
+    type: var
+    var_name: L:__ENG2_CUTOFF_GUARD_State   
+  - #
+    type: var
+    var_name: L:__ENG2_CUTOFF_GUARDIsPressed   
+  - #
+    type: var
+    var_name: L:__ENG2_CUTOFFIsPressed     
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO2      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO2_HANDLE      
+  - #
+    type: var
+    var_name: L:__ENG3_CUTOFF_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG3_CUTOFF_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__ENG3_CUTOFFIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO3      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO3_HANDLE      
+  - #
+    type: var
+    var_name: L:__ENG4_CUTOFF_GUARD_State     
+  - #
+    type: var
+    var_name: L:__ENG4_CUTOFF_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__ENG4_CUTOFFIsPressed 
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO4      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO4_HANDLE      
+  - #
+    type: var
+    var_name: L:__ENG5_CUTOFF_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG5_CUTOFF_GUARDIsPressed     
+  - #
+    type: var
+    var_name: L:__ENG5_CUTOFFIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO5      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO5_HANDLE      
+  - #
+    type: var
+    var_name: L:__ENG6_CUTOFF_GUARD_State
+  - #
+    type: var
+    var_name: L:__ENG6_CUTOFF_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__ENG6_CUTOFFIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO6      
+  - #
+    type: var
+    var_name: L:AN225_MIXTURE_RATIO6_HANDLE
+
+#  - ##### FADEC CCONTROLS PANEL #####    
+  - # FADEC TOGGLES
+    type: var
+    var_name: L:AN225_FADEC_1_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_FADEC_2_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_FADEC_3_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_FADEC_4_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_FADEC_5_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_FADEC_6_TOGGLE      
+  - # FADEC DIMMER 1
+    type: var
+    var_name: L:AN225_POTENTIOMETER_53      
+  - # FADEC DIMMER 2
+    type: var
+    var_name: L:AN225_POTENTIOMETER_25      
+  - # FADEC DIMMER 3
+    type: var
+    var_name: L:AN225_POTENTIOMETER_26  
+    
+#  - ##### APU 1 & 2 PANEL ##### 
+   
+#  - # APU LEFT CONTROLS 
+  - # 
+    type: var
+    var_name: L:AN225_APU_BLEED_LEFT   
+  - #
+    type: var
+    var_name: L:__APU_BLEED_LEFTIsPressed     
+  - # 
+    type: var
+    var_name: L:__APU_LEFT_START_GUARD_State      
+  - #
+    type: var
+    var_name: L:__APU_LEFT_START_GUARDIsPressed      
+  - # 
+    type: var
+    var_name: L:AN225_APU_LEFT_START_COMNAND 
+  - # 
+    type: var
+    var_name: L:__APU_LEFT_STARTIsPressed    
+  - # 
+    type: var
+    var_name: L:AN225_APU_LEFT_STOP_COMNAND      
+  - #
+    type: var
+    var_name: L:__APU_LEFT_STOPIsPressed      
+  - #
+    type: var
+    var_name: L:__APU_START_INIT_LEFT_GAURD_State      
+  - #
+    type: var
+    var_name: L:__APU_START_INIT_LEFT_GAURDIsPressed      
+  - # 
+    type: var
+    var_name: L:AN225_APU_LEFT_STARTER_SWITCH      
+  - # 
+    type: var
+    var_name: L:AN225_APU_HEAT_1      
+  - #
+    type: var
+    var_name: L:__APU_HEAT_1IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_APU_LEFT_FIRE_VALVE_SWITCH   
+  - #
+    type: var
+    var_name: L:AN225_APU_AIR_RESTART_LEFT_GUARD   
+  - #
+    type: var
+    var_name: L:AN225_APU_LEFT_AIR_RESTART_SWITCH     
+  - #
+    type: var
+    var_name: L:AN225_APU_TURNVALVE_SWITCH     
+
+#  - # APU RIGHT CONTROLS 
+  - #
+    type: var
+    var_name: L:AN225_APU_BLEED_RIGHT      
+  - #
+    type: var
+    var_name: L:__APU_BLEED_RIGHTIsPressed      
+  - #
+    type: var
+    var_name: L:__APU_RIGHT_START_GUARD_State     
+  - #
+    type: var
+    var_name: L:__APU_RIGHT_START_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_APU_RIGHT_START_COMNAND
+  - # 
+    type: var
+    var_name: L:__APU_RIGHT_STARTIsPressed    
+  - #
+    type: var
+    var_name: L:AN225_APU_RIGHT_STOP_COMNAND      
+  - #
+    type: var
+    var_name: L:__APU_RIGHT_STOPIsPressed      
+  - #
+    type: var
+    var_name: L:__APU_START_INIT_RIGHT_GAURD_State      
+  - #
+    type: var
+    var_name: L:__APU_START_INIT_RIGHT_GAURDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_APU_RIGHT_STARTER_SWITCH   
+  - #
+    type: var
+    var_name: L:AN225_APU_HEAT_2   
+  - #
+    type: var
+    var_name: L:__APU_HEAT_2IsPressed     
+  - #
+    type: var
+    var_name: L:AN225_APU_RIGHT_FIRE_VALVE_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_APU_AIR_RESTART_RIGHT_GUARD      
+  - #
+    type: var
+    var_name: L:AN225_APU_RIGHT_AIR_RESTART_SWITCH      
+
+#  - ##### ENGINE HEATING PANEL #####
+
+#  - # ENGINE HEAT SWITCHES and COVERS
+  - # ENG 1
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_1_State      
+  - #
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_1IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_ENGINE_HEAT_SWITCH      
+  - # ENG 2
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_2_State      
+  - #
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_2IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_ENGINE_HEAT_SWITCH      
+  - # ENG 3
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_3_State      
+  - #
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_3IsPressed   
+  - #
+    type: var
+    var_name: L:AN225_ENG3_ENGINE_HEAT_SWITCH   
+  - # ENG 4
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_4_State     
+  - #
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_4IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_ENGINE_HEAT_SWITCH      
+  - # ENG 5
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_5_State      
+  - #
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_5IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_ENGINE_HEAT_SWITCH      
+  - # ENG 6
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_6_State      
+  - #
+    type: var
+    var_name: L:__ENG_HEAT_GUARD_6IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_ENGINE_HEAT_SWITCH 
+
+#  - ##### ANTI_ICING PANEL #####   
+ 
+  - # ANTI_ICE SWITCHES
+    type: var
+    var_name: L:AN225_ANTI_ICE_1_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_ANTI_ICE_2_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_ANTI_ICE_3_SWITCH   
+  - #
+    type: var
+    var_name: L:AN225_ANTI_ICE_4_SWITCH 
+    
+  - # PITOT HEAT SWITCHES
+    type: var
+    var_name: L:AN225_PITOT_HEAT1_SWITCH     
+  - #
+    type: var
+    var_name: L:AN225_PITOT_HEAT2_SWITCH      
+
+#  - ##### FUEL VALVEL PANEL SWITCHES AND COVERS #####
+
+  - # Generic NODE STATE for all ENGINE FUEL Valves
+    type: var
+    var_name: L:__LOCK_NODE_ID_State
+    
+  - # ENGINE 1 FUEL VALVES
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP1    
+  - #
+    type: var
+    var_name: L:__FUEL1_2_X_COVER_State      
+  - #
+    type: var
+    var_name: L:__FUEL1_2_X_COVERIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP2     
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP3      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP4      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP5     
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP6      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP7   
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP8   
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP9    
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP10      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP11      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_PUMP12 
+    
+  - # ENGINE 2 FUEL VALVES
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP1    
+  - #
+    type: var
+    var_name: L:__FUEL21_2_X_COVER_State      
+  - #
+    type: var
+    var_name: L:__FUEL2_2_X_COVERIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP2     
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP3      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP4      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP5     
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP6      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP7   
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP8   
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP9    
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP10      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP11      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_PUMP12   
+
+  - # ENGINE 3 FUEL VALVES
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP1    
+  - #
+    type: var
+    var_name: L:__FUEL3_2_X_COVER_State      
+  - #
+    type: var
+    var_name: L:__FUEL3_2_X_COVERIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP2     
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP3      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP4      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP5     
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP6      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP7   
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP8   
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP9    
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP10      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP11      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_PUMP12    
+
+  - # ENGINE 4 FUEL VALVES
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP1    
+  - #
+    type: var
+    var_name: L:__FUEL4_2_X_COVER_State      
+  - #
+    type: var
+    var_name: L:__FUEL4_2_X_COVERIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP2     
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP3      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP4      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP5     
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP6      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP7   
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP8   
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP9    
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP10      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP11      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_PUMP12    
+
+  - # ENGINE 5 FUEL VALVES
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP1    
+  - #
+    type: var
+    var_name: L:__FUEL5_2_X_COVER_State      
+  - #
+    type: var
+    var_name: L:__FUEL5_2_X_COVERIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP2     
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP3      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP4      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP5     
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP6      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP7   
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP8   
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP9    
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP10      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP11      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_PUMP12   
+
+  - # ENGINE 6 FUEL VALVES
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP1    
+  - #
+    type: var
+    var_name: L:__FUEL6_2_X_COVER_State      
+  - #
+    type: var
+    var_name: L:__FUEL6_2_X_COVERIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP2     
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP3      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP4      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP5     
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP6      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP7   
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP8   
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP9    
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP10      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP11      
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_PUMP12   
+  - # IGNITERS ENG 1
+    type: var
+    var_name: L:__IGNITER1_GUARD_State      
+  - #
+    type: var
+    var_name: L:__IGNITER1_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__IGNITER1IsPressed      
+  - # IGNITERS ENG 2
+    type: var
+    var_name: L:__IGNITER2_GUARD_State      
+  - #
+    type: var
+    var_name: L:__IGNITER2_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__IGNITER2IsPressed      
+  - # IGNITERS ENG 3
+    type: var
+    var_name: L:__IGNITER3_GUARD_State      
+  - #
+    type: var
+    var_name: L:__IGNITER3_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__IGNITER3IsPressed   
+  - # IGNITERS ENG 4
+    type: var
+    var_name: L:__IGNITER4_GUARD_State      
+  - #
+    type: var
+    var_name: L:__IGNITER4_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__IGNITER4IsPressed       
+  - #  IGNITERS ENG 5
+    type: var
+    var_name: L:__IGNITER5_GUARD_State      
+  - #
+    type: var
+    var_name: L:__IGNITER5_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__IGNITER5IsPressed      
+  - #  IGNITERS ENG 6
+    type: var
+    var_name: L:__IGNITER6_GUARD_State      
+  - #
+    type: var
+    var_name: L:__IGNITER6_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:__IGNITER6IsPressed       
+     
+
+#  - ##### MID COCKPIT - ELECTRICAL STATION REAR Right Position  ##### 
+
+#  - ##### ELECTRICAL PANELS #####
+
+#  - ## TRANSFORMER RECTIFIERS Switches 1-4
+  - #
+    type: var
+    var_name: L:AN225_TR1_STATUS     
+  - #
+    type: var
+    var_name: L:AN225_TR2_STATUS      
+  - #
+    type: var
+    var_name: L:AN225_TR3_STATUS      
+  - #
+    type: var
+    var_name: L:AN225_TR4_STATUS      
+
+#  - ## RECTIFIER TOGGLE Switches 1-4
+  - #
+    type: var
+    var_name: L:AN225_ENG1_GEN_BUS_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_GEN_BUS_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_GEN_BUS_TOGGLE      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_GEN_BUS_TOGGLE
+  - # Selector Knob
+    type: var
+    var_name: L:AN225_TR_SELECTOR    
+    
+#  - ## ENGINE GENERATOR Switches 1-4
+  - #
+    type: var
+    var_name: L:AN225_ENG1_GEN_ON      
+  - #
+    type: var
+    var_name: L:AN225_ENG2_GEN_ON      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_GEN_ON      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_GEN_ON 
+
+#  - ## MASTER BATTERY SWITCH PANEL
+  - # AC BUS SELECTOR SWITCH
+    type: var
+    var_name: L:AN225_BUS_SELECTOR_SWITCH      
+  - # BATTERY 1
+    type: var
+    var_name: L:AN225_BATT5_SWITCH      
+  - # BATTERY 2
+    type: var
+    var_name: L:AN225_BATT1_SWITCH      
+  - # BATTERY 3
+    type: var
+    var_name: L:AN225_BATT2_SWITCH      
+  - # BATTERY 4
+    type: var
+    var_name: L:AN225_BATT3_SWITCH   
+  - # BATTERY 5
+    type: var
+    var_name: L:AN225_BATT4_SWITCH   
+
+#  - ## BATTERY HEATERS SWITCH PANEL
+  - # 
+    type: var
+    var_name: L:AN225_BATT1_HEATING_SWITCH     
+  - #
+    type: var
+    var_name: L:AN225_BATT2_HEATING_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_BATT3_HEATING_SWITCH      
+
+#  - ## APU GENERATOR SWITCH PANEL
+  - #
+    type: var
+    var_name: L:AN225_APU_LEFT_GEN_ON      
+  - #
+    type: var
+    var_name: L:AN225_APU_RIGHT_GEN_ON      
+
+#  - ## EXTERNAL POWER GENERATOR SWITCH
+  - #
+    type: var
+    var_name: L:AN225_EXT_PWR_GEN_ON      
+ 
+#  - #############  OVERHEAD PANELS #############
+
+#  - ## PILOT OVERHEAD PANEL - LEFT ##
+  - #
+    type: var
+    var_name: L:AN225_CPT_HSI_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_CPT_RADIO_ALTI_SWITCH
+  - #
+    type: var
+    var_name: L:AN225_CPT_AHI_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_CPT_DME_SWITCH
+  - #
+    type: var
+    var_name: L:AN225_CPT_ASI_IND      
+  - #
+    type: var
+    var_name: L:AN225_CPT_TCAS_SWITCH
+  - #
+    type: var
+    var_name: L:AN225_CPT_VSI_SWITCH
+  - #
+    type: var
+    var_name: L:AN225_FAN_CPT_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_CPT_WINDOW_HEAT_SWITCH
+    
+#  - ## PILOT OVERHEAD CENTER - UPPER ##
+
+  - # VOR 1 Radio
+    type: var
+    var_name: L:AN225_VOR1_IDENT_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_VOR1_AUTO_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_CPT_DME_UNIT_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_OUTER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_OUTER_KNOB_TURNED_ANTICLOCKWISE 
+  - # VOR1 BRIGHTNESS KNOB
+    type: var
+    var_name: L:AN225_POTENTIOMETER_23      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_INNER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR1_INNER_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_VOLUME_VOR1   
+    
+  - # VOR 2 RADIO
+    type: var
+    var_name: L:AN225_VOR2_IDENT_SWITCH  
+  - #
+    type: var
+    var_name: L:AN225_VOR2_AUTO_SWITCH     
+  - #
+    type: var
+    var_name: L:AN225_FO_DME_UNIT_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_OUTER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_OUTER_KNOB_TURNED_ANTICLOCKWISE      
+  - # VOR2 BRIGHTNESS KNOB
+    type: var
+    var_name: L:AN225_POTENTIOMETER_24      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_INNER_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_RMP_VOR2_INNER_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_VOLUME_VOR2  
+    
+  - # ILS PANEL
+    type: var
+    var_name: L:AN225_NAV_BEACON_MODE      
+  - #
+    type: var
+    var_name: L:AN225_NAV_RECEIVER_SELECTOR      
+  - #
+    type: var
+    var_name: L:AN225_NAV_BEACON_BRIGHTNESS_MODE 
+    
+  - # OVH MARKER PANEL
+    type: var
+    var_name: L:AN225_OVH_VOR_DATA_SEL   
+  - #
+    type: var
+    var_name: L:AN225_OVH_VOR_DATA_TOGGLE 
+    
+  - # TCAS 1 PANEL
+    type: var
+    var_name: L:AN225_TCAS_PSZ_KNOB_KNOB_TURNED_CLOCKWISE     
+  - #
+    type: var
+    var_name: L:AN225_TCAS_PSZ_KNOB_KNOB_TURNED_ANTICLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_TCAS_PSZ_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_TCAS_AP_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_TCAS_AP_KNOB_KNOB_TURNED_CLOCKWISE      
+  - #
+    type: var
+    var_name: L:AN225_TCAS_AP_KNOB_KNOB_TURNED_ANTICLOCKWISE  
+    
+  - # TCAS 2 PANEL
+    type: var
+    var_name: L:AN225_TCAS_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_tcas_range      
+  - #
+    type: var
+    var_name: L:AN225_TCAS_ALT_MODE      
+  - #
+    type: var
+    var_name: L:__KNOB_TCAS_THOU      
+  - #
+    type: var
+    var_name: L:__KNOB_TCAS_HUN      
+  - #
+    type: var
+    var_name: L:__KNOB_TCAS_TEN   
+  - #
+    type: var
+    var_name: L:__KNOB_TCAS_ONES  
+  - #
+    type: var
+    var_name: L:AN225_TCAS_MODE     
+  - #
+    type: var
+    var_name: L:AN225_TCAS_ALT_SOURCE 
+    
+#  - ## PILOT OVERHEAD CENTER - LOWER ##
+
+  - # AUTO READYNESS TESTING BUTTONS
+    type: var
+    var_name: L:AN225_TO_TEST_BUTTON      
+  - # 
+    type: var
+    var_name: L:AN225_LDG_TEST_BUTTON 
+    
+  - # LIGHTING PANEL
+    type: var
+    var_name: L:AN225_POTENTIOMETER_NAV      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_BEACON      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_LOGO      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_STROBE      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_FUSE_SIDE      
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_LANDING_LEFT
+  - #
+    type: var
+    var_name: L:AN225_POTENTIOMETER_LANDING_RIGHT
+
+#  - ## FIRST OFFICER OVERHEAD PANEL - RIGHT ##
+  - #
+    type: var
+    var_name: L:AN225_FO_DME_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_FO_ASI_IND      
+  - #
+    type: var
+    var_name: L:AN225_FO_HSI_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_FO_RADIO_ALTI_SWITCH 
+    
+  - # First Officer NAV & LAND SYS
+    type: var
+    var_name: L:AN225_FO_NAV1_BUS_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_FO_NAV2_BUS_SWITCH 
+    
+  - # FO COMM SWITCH
+    type: var
+    var_name: L:AN225_FO_COMM_BUS_SWITCH 
+    
+  - # ADS Air Data Computers
+    type: var
+    var_name: L:AN225_FO_AIR_COMP_1      
+  - #
+    type: var
+    var_name: L:AN225_FO_AIR_COMP_2      
+  - #
+    type: var
+    var_name: L:AN225_FO_AIR_COMP_3  
+    
+  - # FO VSI SWITCH
+    type: var
+    var_name: L:AN225_FO_VSI_SWITCH 
+    
+  - # FO FAN SWITCH
+    type: var
+    var_name: L:AN225_FAN_FO_SWITCH 
+    
+  - # FO WINDOW HEAT
+    type: var
+    var_name: L:AN225_FO_WINDOW_HEAT_SWITCH      
+  
+    
+#  - #############  PEDISTAL #############
+#  - ## QUADRANT area ##
+  - #
+    type: var
+    var_name: L:AN225_THRUST_REVERSE_BAR 
+  - #
+    type: var
+    var_name: L:AN225_THRUST_REV
+  - #
+    type: var
+    var_name: L:AN225_REV_PERCENT
+  - #
+    type: var
+    var_name: L:AN225_THROTTLE_LEVER_LOCK 
+    
+  - # ENGINE IDLE SWITCH's and COVER
+    type: var
+    var_name: L:An225_LOW_THRUST_GUARD_STATE      
+  - #
+    type: var
+    var_name: L:AN225_THRUST_LOW_SWITCH_ENG1_2      
+  - #
+    type: var
+    var_name: L:AN225_THRUST_LOW_SWITCH_ENG3_4      
+  - #
+    type: var
+    var_name: L:AN225_THRUST_LOW_SWITCH_ENG5_6  
+    
+  - # FUEL VALVES and GUARD
+    type: var
+    var_name: L:__ENG1_FUEL_VLV_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG1_FUEL_VLV_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG1_FUEL_VALVE_SWITCH   
+  - #
+    type: var
+    var_name: L:__ENG2_FUEL_VLV_GUARD_State   
+  - #
+    type: var
+    var_name: L:__ENG2_FUEL_VLV_GUARDIsPressed     
+  - #
+    type: var
+    var_name: L:AN225_ENG2_FUEL_VALVE_SWITCH      
+  - #
+    type: var
+    var_name: L:__ENG3_FUEL_VLV_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG3_FUEL_VLV_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG3_FUEL_VALVE_SWITCH      
+  - #
+    type: var
+    var_name: L:__ENG4_FUEL_VLV_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG4_FUEL_VLV_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG4_FUEL_VALVE_SWITCH      
+  - #
+    type: var
+    var_name: L:__ENG5_FUEL_VLV_GUARD_State      
+  - #
+    type: var
+    var_name: L:__ENG5_FUEL_VLV_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_ENG5_FUEL_VALVE_SWITCH      
+  - #
+    type: var
+    var_name: L:__ENG6_FUEL_VLV_GUARD_State   
+  - #
+    type: var
+    var_name: L:__ENG6_FUEL_VLV_GUARDIsPressed   
+  - #
+    type: var
+    var_name: L:AN225_ENG6_FUEL_VALVE_SWITCH 
+    
+  - # DN TRACKING SWITCH
+    type: var
+    var_name: L:AN225_DN_TRACKING_SWITCH 
+    
+  - # AP CONTROL PANEL
+    type: var
+    var_name: L:__AUTOPILOT_MASTER_GUARD_State      
+  - #
+    type: var
+    var_name: L:__AUTOPILOT_MASTER_GUARDIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_AP_POWR_BUS_STATE      
+  - #
+    type: var
+    var_name: L:AN255_AUTOPILOT_BANK_KNOB      
+  - #
+    type: var
+    var_name: L:AN225_BANK_REF_HOLD      
+  - #
+    type: var
+    var_name: L:AN225_PITCH_HOLD_REF     
+
+#  - #############  PILOT PANELS - Left Arm #############
+#  - ## Steering Switch and Cover ##
+  - # Cover
+    type: var
+    var_name: L:An225_STEERING_SWITCHES_GUARD_STATE      
+  - # Left switch
+    type: var
+    var_name: L:An225_STEERING_SWITCH_1      
+  - # Right Switch
+    type: var
+    var_name: L:An225_STEERING_SWITCH_2 
+    
+#  - ## Illumination Panel ##
+  - # CNTRL PANEL Knob
+    type: var
+    var_name: L:An225_POTENTIOMETER_33      
+  - # Left Panel Knob 
+    type: var
+    var_name: L:An225_POTENTIOMETER_34      
+  - # Dashboard Reserve Knob
+    type: var
+    var_name: L:An225_POTENTIOMETER_43      
+  - # Panels Knob
+    type: var
+    var_name: L:An225_POTENTIOMETER_30      
+  - # VSI - TCAS Switch
+    type: var
+    var_name: L:An225_POTENTIOMETER_31      
+  - # EQUIP KNOB
+    type: var
+    var_name: L:An225_POTENTIOMETER_22
+
+  - # Pilot Wiper Switch
+    type: var
+    var_name: L:An225_WIPER_SWITCH_CPT
+
+#  - #############  PILOT Front PANEL #############
+  - # CPT FLASH ALARM RESET
+    type: var
+    var_name: L:AN225_MASTER_WARNING_COMMAND      
+  - #
+    type: var
+    var_name: L:__CPT_ANN_RESETIsPressed
+    
+  - # Pilot VOR and RMI Gauge
+    type: var
+    var_name: L:AN225_CPT_RMI_VOR1_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_RMI_VOR1_NEEDLE      
+  - #
+    type: var
+    var_name: L:AN225_CPT_RMI_VOR2_SWITCH      
+  - #
+    type: var
+    var_name: L:AN225_RMI_VOR2_NEEDLE  
+    
+  - # Captain Attitude Indicator Cage
+    type: var
+    var_name: L:AN225_CPT_AH_PWR      
+  - #
+    type: var
+    var_name: L:__CPT_AH_PWRIsPressed 
+    
+  - # CPT DME BRIGHTNESS SWITCH
+    type: var
+    var_name: L:AN225_POTENTIOMETER_48
+    
+  - # CPT RADIO ALTIMETER
+    type: var
+    var_name: L:AN225_CPT_RA_Knob_TEST      
+#  - #
+#    type: var
+#    var_name: L:AN225_CPT_RA_NEEDLE_ANIMATION      
+  - #
+    type: var
+    var_name: L:AN225_CPT_RA_BUG   
+  - #
+    type: var
+    var_name: L:AN225_CPT_RA_BUG_ANIMATION 
+    
+  - # CPT HSI Indicator selector buttons
+    type: var
+    var_name: L:AN225_CPT_HSI1_SELECTION      
+  - #
+    type: var
+    var_name: L:__CPT_LND_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__CPT_NAV_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__CPT_VOR1SET_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__CPT_VOR2SET_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_CPT_HSI2_SELECTIO      
+  - #
+    type: var
+    var_name: L:__CPT_ADF1_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__CPT_ADF2_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__CPT_VOR1CAR_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:__CPT_VOR2CAR_PUSHIsPressed 
+    
+  - # Brake System Test Button
+    type: var
+    var_name: L:AN225_BRAKE_TEST_BUTTON   
+    
+#  - #############  PILOT CENTER PANEL #############
+
+##  -### AUTOPILOT SYSTEM CONTROL PANEL ###
+
+  - # Airspeed Set knob
+    type: var
+    var_name: L:AN225_AIRSPEED_DIAL_KPH   
+  - #
+    type: var
+    var_name: L:AN225_AIRSPEED_DIAL     
+  - #
+    type: var
+    var_name: L:AN225_CPT_SPEEDSET      
+  - #
+    type: var
+    var_name: L:AN225_AIRSPEED_DIAL_1S      
+  - #
+    type: var
+    var_name: L:AN225_AIRSPEED_DIAL_10S      
+  - #
+    type: var
+    var_name: L:AN225_AIRSPEED_DIAL_100S 
+  - # Vertical Speed knob
+    type: var
+    var_name: L:AN225_VVI_DIAL      
+  - #
+    type: var
+    var_name: L:AN225_VS_ANNIMATION 
+  - # Vertical HOLD
+    type: var
+    var_name: L:AN225_AP_VS_COMMAND      
+  - # DAY & NIGHT ILlumination switch
+    type: var
+    var_name: L:AN225_AP_DAY_NIGHT_SWITCH
+    
+  - # Altitude Set KNOB
+    type: var
+    var_name: L:AN225_AP_METERS      
+  - #
+    type: var
+    var_name: L:AN225_AP_ALT_SEL_SWITCH
+  - #
+    type: var
+    var_name: L:AN225_ALTITUDE_DIAL_1S      
+  - #
+    type: var
+    var_name: L:AN225_ALTITUDE_DIAL_10S   
+  - #
+    type: var
+    var_name: L:AN225_ALTITUDE_DIAL_100S   
+  - #
+    type: var
+    var_name: L:AN225_ALTTTUDE_DIAL_1000S     
+  - #
+    type: var
+    var_name: L:AN225_ALTITUDE_DIAL_10000S
+  -
+    type: NumSet
+    var_name: L:AN225_AP_METERS
+    var_units: meters
+    var_type: i32
+    event_name: AP_ALT_VAR_INC
+    off_event_name: AP_ALT_VAR_DEC
+    event_param: 1   
+  - # VS mode
+    type: var
+    var_name: L:AP_ALT_SYNC_COMMAND 
+    
+  - # AUTO THROTTLE
+    type: var
+    var_name: L:AN225_AUTOTHROTTLE_ACTIVE      
+  - #
+    type: var
+    var_name: L:AN225_AP_RESET_COMMAND      
+  - # 
+    type: var
+    var_name: L:AN225_AP_WING_LEVEL_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_AP_CRS_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_AP_PITCH_LEVEL_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_AIRSPEED_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_MACH_COMMAND
+  - #
+    type: var
+    var_name: L:AN225_ALT_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_AP_SRC_SELECTOR 
+    
+  - # AP VOR HEADING SELECT
+    type: var
+    var_name: L:AN255_AP_VOR_SEL_SWITCH      
+  - #AP NO FUNC 1
+    type: var
+    var_name: L:AP_NOFUNC_01_PUSH      
+  - #
+    type: var
+    var_name: L:__AP_NOFUNC_01IsPressed      
+  - #AP MAX PITCH
+    type: var
+    var_name: L:AP_MAX_PITCH_PUSH      
+  - #
+    type: var
+    var_name: L:__AP_MAX_PITCH_PUSHIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_AP_MAX_PITCH_ACTIVE      
+  - # AP NOP FUNC 2
+    type: var
+    var_name: L:AP_NOFUNC_02_PUSH      
+  - #
+    type: var
+    var_name: L:__AP_NOFUNC_02IsPressed   
+  - # AP MAX ROLL
+    type: var
+    var_name: L:AP_MAX_ROLL_PUSH     
+  - #
+    type: var
+    var_name: L:__AP_MAX_BANKIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_AP_MAX_ROLL_ACTIVE      
+  - # AP SPEED SELECTOR
+    type: var
+    var_name: L:AN225_AP_SPEED_SELECTOR      
+  - # AP TURN 90 
+    type: var
+    var_name: L:AP_AP_TURN_90_PUSH      
+  - #
+    type: var
+    var_name: L:__AP_TURN_90IsPressed      
+  - #
+    type: var
+    var_name: L:AN225_AP_TURN_ACTIVE      
+  - # AP CIRCLE LEFT
+    type: var
+    var_name: L:AP_AP_CIRCLE_L_PUSH      
+  - #
+    type: var
+    var_name: L:__AP_CIRCLE_LIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_AP_CIRCLE_L_ACTIVE      
+  - # AP HSI SYNC
+    type: var
+    var_name: L:AN225_AP_HSI_SYNC_BUTTON      
+  - #
+    type: var
+    var_name: L:__AP_HSI_SYNCIsPressed   
+  - #
+    type: var
+    var_name: L:AN225_AP_HSI_SYNC_BUTTON   
+  - # AP CIRCLE RIGHT
+    type: var
+    var_name: L:AP_AP_CIRCLE_R_PUSH     
+  - #
+    type: var
+    var_name: L:__AP_CIRCLE_RIsPressed      
+  - #
+    type: var
+    var_name: L:AN225_AP_CIRCLE_R_ACTIVE      
+  - # AP ALTITUDE SELECTOR
+    type: var
+    var_name: L:AN255_AP_ALT_SEL_SWITCH      
+
+##  -### ISIS and GEAR ###  
+  - # ISIS Guage - StandBy Horizon
+    type: var
+    var_name: L:An225_ISIS_MENU_COMMAND      
+  - #
+    type: var
+    var_name: L:__ISIS_BRTIsPressed      
+  - # BARO KNOB AHI
+    type: var
+    var_name: L:AN225_ISIS_BARO_PUSH_COMMAND      
+  - #
+    type: var
+    var_name: L:AN225_ISIS_BARO_ANTICLOCKWISE_COMMAND     
+  - #
+    type: var
+    var_name: L:AN225_ISIS_BARO_CLOCKWISE_COMMAND      
+  - # Gear LATCH COVER TOP
+    type: var
+    var_name: L:AN225_GEAR_LATCH_TOP_STATE      
+  - #
+    type: var
+    var_name: L:__GEAR_LATCH_TOPIsPressed      
+  - # GEAR LEVER POSITION
+    type: var
+    var_name: L:AN225_GEAR_HANDLE_POSITION   
+  - # Gear LATCH COVER BOTTOM
+    type: var
+    var_name: L:AN225_GEAR_LATCH_BOTTOM_STATE   
+  - #
+    type: var
+    var_name: L:__GEAR_LATCH_BOTTOMIsPressed     
+
+server:
+  -
+    type: var
+    var_name: A:FUEL TANK LEFT MAIN LEVEL
+    var_units: Percent
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:FUEL TANK RIGHT MAIN LEVEL
+    var_units: Percent
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:1
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:2
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:3
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:4
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:5
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:6
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:7
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:8
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:9
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:10
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:11
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+
+ignore:
+  - iniBuildsModernEFB#forwardPax
