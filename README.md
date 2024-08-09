@@ -11,6 +11,8 @@ Profile to work with YourControls application and MSFS2020. If you find any bugs
 
 
 # FIXED: 
+8-9-24 corrected Developer Mispelled Commands on APU Left and Right
+
 All MID cockpit Radio officer, Engineer station, and Electrical officer funtionality has been added 
 
 I recommend that you and your co-pilot first conduct a test flight to check if everything is working properly.
